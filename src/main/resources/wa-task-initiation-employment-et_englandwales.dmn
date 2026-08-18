@@ -155,7 +155,7 @@ and additionalData.Data!=null
 and additionalData.Data.hearingDetailsCollection!=null
 and count(additionalData.Data.hearingDetailsCollection)&gt;0
 and (some x in additionalData.Data.hearingDetailsCollection satisfies x.value.hearingDetailsStatus="Heard")
-and (every x in additionalData.Data.hearingDetailsCollection satisfies (x.value.hearingDetailsStatus="Heard" or x.value.hearingDetailsStatus="Vacated"))</text>
+and (every x in additionalData.Data.hearingDetailsCollection satisfies (x.value.hearingDetailsStatus="Heard" or x.value.hearingDetailsStatus="Vacated" or x.value.hearingDetailsStatus="Postponed"))</text>
         </inputExpression>
       </input>
       <input id="InputClause_0z98r1i" label="Submission Reason (Application)" biodi:width="197">
