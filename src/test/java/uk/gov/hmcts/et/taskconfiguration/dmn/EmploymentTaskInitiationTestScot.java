@@ -88,6 +88,11 @@ class EmploymentTaskInitiationTestScot extends DmnDecisionTableBaseUnitTest {
             + "{\"value\": {\"hearingDetailsStatus\": \"Heard\"}},"
             + "{\"value\": {\"hearingDetailsStatus\": \"Postponed\"}}"
             + "]";
+    public static final String HEARING_DETAIL_COLLECTION_SETTLED =
+        "\"hearingDetailsCollection\": ["
+            + "{\"value\": {\"hearingDetailsStatus\": \"Heard\"}},"
+            + "{\"value\": {\"hearingDetailsStatus\": \"Settled\"}}"
+            + "]";
 
     @BeforeAll
     static void initialization() {
@@ -685,6 +690,18 @@ class EmploymentTaskInitiationTestScot extends DmnDecisionTableBaseUnitTest {
                 "updateHearing",
                 "Accepted",
                 HelperService.mapAdditionalData(HEARING_DETAIL_COLLECTION_POSTPONED),
+                List.of(
+                    HelperService.mapExpectedOutput(
+                        "DraftAndSignJudgment",
+                        "Draft And Sign Judgment/Order",
+                        "Judgment"
+                    )
+                )
+            ),
+            Arguments.of(
+                "updateHearing",
+                "Accepted",
+                HelperService.mapAdditionalData(HEARING_DETAIL_COLLECTION_SETTLED),
                 List.of()
             ),
             Arguments.of(
