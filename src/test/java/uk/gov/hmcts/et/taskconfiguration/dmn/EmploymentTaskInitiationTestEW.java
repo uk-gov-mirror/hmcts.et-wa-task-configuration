@@ -84,6 +84,11 @@ class EmploymentTaskInitiationTestEW extends DmnDecisionTableBaseUnitTest {
             + "{\"value\": {\"hearingDetailsStatus\": \"Heard\"}},"
             + "{\"value\": {\"hearingDetailsStatus\": \"Vacated\"}}"
             + "]";
+    public static final String HEARING_DETAIL_COLLECTION_HEARD_POSTPONED =
+        "\"hearingDetailsCollection\": ["
+            + "{\"value\": {\"hearingDetailsStatus\": \"Heard\"}},"
+            + "{\"value\": {\"hearingDetailsStatus\": \"Postponed\"}}"
+            + "]";
     public static final String HEARING_DETAIL_COLLECTION_VACATED_ONLY =
         "\"hearingDetailsCollection\": [{\"value\": {\"hearingDetailsStatus\": \"Vacated\"}}]";
 
@@ -695,6 +700,18 @@ class EmploymentTaskInitiationTestEW extends DmnDecisionTableBaseUnitTest {
                 "updateHearing",
                 "Accepted",
                 HelperService.mapAdditionalData(HEARING_DETAIL_COLLECTION_HEARD_VACATED),
+                List.of(
+                    HelperService.mapExpectedOutput(
+                        "DraftAndSignJudgment",
+                        "Draft And Sign Judgment/Order",
+                        "Judgment"
+                    )
+                )
+            ),
+            Arguments.of(
+                "updateHearing",
+                "Accepted",
+                HelperService.mapAdditionalData(HEARING_DETAIL_COLLECTION_HEARD_POSTPONED),
                 List.of(
                     HelperService.mapExpectedOutput(
                         "DraftAndSignJudgment",
